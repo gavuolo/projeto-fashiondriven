@@ -33,7 +33,7 @@ function escolherModelo(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    modelo = clicou.parentNode.querySelector('p').innerHTML;
+    modelo = clicou.parentNode.querySelector('h6').innerHTML
     console.log(modelo)
 }
 
@@ -45,7 +45,7 @@ function escolherGola(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    gola = clicou.parentNode.querySelector('p').innerHTML;
+    gola = clicou.parentNode.querySelector('h6').innerHTML;
     console.log(gola)
 }
 
@@ -57,37 +57,37 @@ function escolherTecido(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    tecido = clicou.parentNode.querySelector('p').innerHTML;
+    tecido = clicou.parentNode.querySelector('h6').innerHTML;
     console.log(tecido)
 }
 
 //IMAGEM
-
 function armazenarImagem(){
     imagem = document.querySelector(".img-ref input").value
-    if(imagem === null || imagem === undefined || imagem === ''){
-        alert("Insira um link de imagem")
-    }
-    //imagemEnviar = new URL (imagem)
+    
+    imagemEnviar = new URL (imagem)
+    
 }
 
 //Confirmar e enviar pedido
 function confirmarPedido(){
-    let produtos = document.querySelectorAll('.select')
     armazenarImagem()
-    if(produtos.length === 3){
 
+    let produtos = document.querySelectorAll('.select')
+    if(produtos.length === 3 && imagem != null && imagem != undefined){
+       
         objetoEnviar = {
-            "model": modelo,
-            "neck": gola,
-            "material": tecido,
-            "owner": nome,
-            "image": imagemEnviar,
+            model: modelo,
+            neck: gola,
+            material: tecido,
+            image: imagemEnviar,
+            owner: nome,
+            author: nome
         }
-        console.log('tudo ok')
+        console.log(objetoEnviar)
         enviarPedido() 
-        return 
     }
+    return
 }
 
 function enviarPedido(){
@@ -107,10 +107,8 @@ function enviarPedido(){
 
 }
 
-
-
 //ULTIMOS PEDIDOS ENVIADOS
-function buscarDados(){
+/*function buscarDados(){
     let promessa = axios.get(api);
     console.log(promessa)
 
@@ -126,4 +124,4 @@ function ultimosPedidos(resposta){
     console.log(resposta)
     console.log(resposta.data)
 
-}
+}*/
