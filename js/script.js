@@ -15,12 +15,13 @@ let tecido
 let imagem
 let imagemEnviar
 let objetoEnviar
+let arrayDeProdutos
 let api = 'https://mock-api.driven.com.br/api/v4/shirts-api/shirts'
 
 registrar()
 function registrar(){
     nome = prompt('Qual o seu nome?')
-    while(nome === null){
+    while(nome === null || nome === ''){
         nome = prompt('Qual o seu nome?')
     }
 }
@@ -95,7 +96,7 @@ function enviarPedido(){
 
     promessa.then(()=>{
     alert(`
-        Obrigada, ${nome}!
+        Obrigade, ${nome}!
         Confirme o pedido:
             - Modelo: ${modelo}.
             - Gola: ${gola}.
@@ -124,8 +125,7 @@ function erroPromessa(){
 }
 
 function ultimosPedidos(resposta){
-    let arrayDeProdutos = resposta.data
-    console.log(arrayDeProdutos)
+    arrayDeProdutos = resposta.data
 
     for(let i = 0; i < arrayDeProdutos.length; i++){
         let divAdd = document.querySelector('.all-products')
@@ -138,6 +138,32 @@ function ultimosPedidos(resposta){
     }
 }
 
-function identificarProduto(div, ID){
-    console.log('ok')
+function identificarProduto(div, produtoID){
+    console.log(produtoID)
+    console.log(arrayDeProdutos[0].id)
+    if(window.confirm("Você quer encomendar este produto?")){
+        for(let i = 0; i < arrayDeProdutos.length; i++){
+            if(produtoID === arrayDeProdutos[i].id){
+                objetoEnviar = {
+                    model: `${arrayDeProdutos[i].model}`,
+                    neck: `${arrayDeProdutos[i].neck}`,
+                    material: `${arrayDeProdutos[i].material}`,
+                    image: `${arrayDeProdutos[i].image}`,
+                    owner: `${arrayDeProdutos[i].owner}`,
+                    author: `${arrayDeProdutos[i].owner}`
+                }
+                console.log(objetoEnviar)
+        }
+        }
+
+        //POST do produto clicado
+        let promessa = axios.post(api, objetoEnviar)
+        promessa.then(()=>{
+            alert(`Obrigade ${nome}! Volte sempre 🤗`)
+            window.location.reload()
+        })
+        promessa.catch(()=>{
+            alert('Foi não')
+        })
+    }
 }
