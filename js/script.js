@@ -12,8 +12,12 @@ let nome
 let modelo
 let gola
 let tecido
+let imagem
+let imagemEnviar
+let objetoEnviar
 let api = 'https://mock-api.driven.com.br/api/v4/shirts-api/shirts'
 
+registrar()
 function registrar(){
     nome = prompt('Qual o seu nome?')
     while(nome === null){
@@ -29,7 +33,7 @@ function escolherModelo(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    let modelo = clicou.parentNode.querySelector('p').innerHTML;
+    modelo = clicou.parentNode.querySelector('p').innerHTML;
     console.log(modelo)
 }
 
@@ -41,7 +45,7 @@ function escolherGola(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    let gola = clicou.parentNode.querySelector('p').innerHTML;
+    gola = clicou.parentNode.querySelector('p').innerHTML;
     console.log(gola)
 }
 
@@ -53,28 +57,55 @@ function escolherTecido(clicou){
         elemento.classList.remove('select')
     }
     clicou.classList.add('select')
-    let tecido = clicou.parentNode.querySelector('p').innerHTML;
+    tecido = clicou.parentNode.querySelector('p').innerHTML;
     console.log(tecido)
 }
 
 //IMAGEM
+
 function armazenarImagem(){
-    let imagemEnviar = document.querySelector(".img-ref input").value
-    console.log(imagemEnviar)
+    imagem = document.querySelector(".img-ref input").value
+    if(imagem === null || imagem === undefined || imagem === ''){
+        alert("Insira um link de imagem")
+    }
+    //imagemEnviar = new URL (imagem)
 }
 
 //Confirmar e enviar pedido
 function confirmarPedido(){
     let produtos = document.querySelectorAll('.select')
-    
+    armazenarImagem()
     if(produtos.length === 3){
-        console.log('sim')
-        return
+
+        objetoEnviar = {
+            "model": modelo,
+            "neck": gola,
+            "material": tecido,
+            "owner": nome,
+            "image": imagemEnviar,
+        }
+        console.log('tudo ok')
+        enviarPedido() 
+        return 
     }
-    
 }
 
+function enviarPedido(){
+    let promessa = axios.post(api, objetoEnviar)
 
+    promessa.then(()=>{
+    alert(`
+        Obrigada, ${nome}!
+        Confirme o pedido:
+            - Modelo: ${modelo}.
+            - Gola: ${gola}.
+            - Tecido: ${tecido}.
+        `)})
+    promessa.catch(()=>{
+        alert(`Ops, não conseguimos processar sua encomenda`)
+    })
+
+}
 
 
 
