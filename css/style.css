@@ -77,7 +77,6 @@ strong{
     height: 100px;
     cursor: pointer;
     border-radius: 50%;
-    
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,6 +92,7 @@ strong{
     flex-direction: column;
     justify-content: start;
 }
+
 .img-ref input, .img-ref button{
     margin: 1% 0;
 }
@@ -166,39 +166,43 @@ button{
 }
 
 /*selecionar*/
+
 .select{
     border: 3px solid #404EED;
 }
 
 /*BREAKPOINT*/
-
 @media (max-width: 1024px){
 
     .logo{
         width: auto;
         margin:0;
     }
+
     .top-bar{
         justify-content: center;
     }
 
-
     .principal{
         display: hidden;
     }
+
     .box-right{
         display: none;
     }
+
     .all-options{
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: stretch;
     }
+
     .selection{
         width: 100%;
         height: 100%;
     }
+
     .img-ref{
         width: 100%;
     }
@@ -207,12 +211,14 @@ button{
         margin-left: 0;
         margin-top: 10%;
     }
+
     .box-bot{
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
+    
     .all-products{
         flex-direction: column;
     }
