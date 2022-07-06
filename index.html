@@ -25,19 +25,19 @@
                 </div>
                 <div class="box model">
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherModelo(this)">
                             <img src="./images/tshirt.png" alt="T-shirt">
                         </div>
                         <p>T-Shirt</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherModelo(this)">
                             <img src="./images/Camiseta.png" alt="Camiseta">
                         </div>
                         <p>Camiseta</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherModelo(this)">
                             <img src="./images/Mangalonga.png" alt="Manga longa">
                         </div>
                         <p>Manga longa</p>
@@ -49,21 +49,21 @@
                 <div class="title">
                     <h1>Escolha a gola</h1> 
                 </div>
-                <div class="box collar">
+                <div class="box neck">
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherGola(this)">
                             <img src="./images/GolaV.png" alt="Gola V">
                         </div>
                         <p>Gola V</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherGola(this)">
                             <img src="./images/GolaRedonda.png" alt="Gola Redonda">
                         </div>
                         <p>Gola redonda</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherGola(this)">
                             <img src="./images/GolaPolo.png" alt="Gola Polo">
                         </div>
                         <p>Gola polo</p>
@@ -75,21 +75,21 @@
                 <div class="title">
                     <h1>Escolha o tecido</h1>
                 </div>
-                <div class="box tissue">
+                <div class="box material">
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherTecido(this)">
                             <img src="./images/Seda.png" alt="Seda">
                         </div>
                         <p>Seda</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherTecido(this)">
                             <img src="./images/Algodão.png" alt="Algodão">
                         </div>
                         <p>Algodão</p>
                     </div>
                     <div class="selection">
-                        <div class="click" onclick="">
+                        <div class="click" onclick="escolherTecido(this)">
                             <img src="./images/Poliester.png" alt="Poliester">
                         </div>
                         <p>Poliéster</p>
@@ -104,7 +104,7 @@
 
                 <div class="img-ref">
                     <input type="link" placeholder="Insira o link">
-                    <button>Confirmar pedido</button>
+                    <button onclick="confirmarPedido()">Confirmar pedido</button>
                 </div>
             </div>
         </div>
@@ -146,6 +146,7 @@
     </div>
 </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/script.js"></script>
 </body>
 </html>
