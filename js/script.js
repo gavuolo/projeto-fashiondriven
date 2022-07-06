@@ -100,7 +100,9 @@ function enviarPedido(){
             - Modelo: ${modelo}.
             - Gola: ${gola}.
             - Tecido: ${tecido}.
-        `)})
+        `)
+        window.location.reload()
+    })
     promessa.catch(()=>{
         alert(`Ops, não conseguimos processar sua encomenda`)
     })
@@ -108,9 +110,10 @@ function enviarPedido(){
 }
 
 //ULTIMOS PEDIDOS ENVIADOS
-/*function buscarDados(){
+buscarDados()
+function buscarDados(){
     let promessa = axios.get(api);
-    console.log(promessa)
+    //console.log(promessa)
 
     promessa.then(ultimosPedidos);
     promessa.catch(erroPromessa);   
@@ -121,7 +124,20 @@ function erroPromessa(){
 }
 
 function ultimosPedidos(resposta){
-    console.log(resposta)
-    console.log(resposta.data)
+    let arrayDeProdutos = resposta.data
+    console.log(arrayDeProdutos)
 
-}*/
+    for(let i = 0; i < arrayDeProdutos.length; i++){
+        let divAdd = document.querySelector('.all-products')
+        divAdd.innerHTML += `
+        <div class="last-product" onclick="identificarProduto(this, ${arrayDeProdutos[i].id})">
+            <img src="${arrayDeProdutos[i].image}" alt="">
+            <h1><strong>Criador:</strong> ${arrayDeProdutos[i].owner}</h1>
+        </div>
+        `
+    }
+}
+
+function identificarProduto(div, ID){
+    console.log('ok')
+}
