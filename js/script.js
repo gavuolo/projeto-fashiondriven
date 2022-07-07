@@ -22,7 +22,7 @@ registrar()
 function registrar(){
     nome = prompt('Qual o seu nome?')
     while(nome === null || nome === ''){
-        nome = prompt('Qual o seu nome?')
+        registrar()
     }
 }
 
@@ -35,7 +35,6 @@ function escolherModelo(clicou){
     }
     clicou.classList.add('select')
     modelo = clicou.parentNode.querySelector('h6').innerHTML
-    console.log(modelo)
 }
 
 //GOLA
@@ -47,7 +46,6 @@ function escolherGola(clicou){
     }
     clicou.classList.add('select')
     gola = clicou.parentNode.querySelector('h6').innerHTML;
-    console.log(gola)
 }
 
 //TECIDO
@@ -59,15 +57,12 @@ function escolherTecido(clicou){
     }
     clicou.classList.add('select')
     tecido = clicou.parentNode.querySelector('h6').innerHTML;
-    console.log(tecido)
 }
 
 //IMAGEM
 function armazenarImagem(){
     imagem = document.querySelector(".img-ref input").value
-    
     imagemEnviar = new URL (imagem)
-    
 }
 
 //Confirmar e enviar pedido
@@ -115,7 +110,6 @@ buscarDados()
 function buscarDados(){
     let promessa = axios.get(api);
     //console.log(promessa)
-
     promessa.then(ultimosPedidos);
     promessa.catch(erroPromessa);   
 }
@@ -155,7 +149,6 @@ function identificarProduto(div, produtoID){
                 console.log(objetoEnviar)
         }
         }
-
         //POST do produto clicado
         let promessa = axios.post(api, objetoEnviar)
         promessa.then(()=>{
