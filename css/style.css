@@ -166,6 +166,10 @@ button{
 
 /*selecionar*/
 
+.able{
+    background-color: green;
+}
+
 .select{
     border: 3px solid #404EED;
 }

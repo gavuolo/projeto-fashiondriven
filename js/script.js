@@ -1,12 +1,5 @@
 //pegar os itens https://mock-api.driven.com.br/api/v4/shirts-api/shirts
 //postar os itens https://mock-api.driven.com.br/api/v4/shirts-api/shirts
-/*		"id": 2445,
-		"model": "top-tank",
-		"neck": "round",
-		"material": "silk",
-		"owner": "jajajaja",
-		"image": "https://http.cat/411.jpg"
-*/
 
 let nome
 let modelo
@@ -35,6 +28,7 @@ function escolherModelo(clicou){
     }
     clicou.classList.add('select')
     modelo = clicou.parentNode.querySelector('h6').innerHTML
+    habilitarBotao()
 }
 
 //GOLA
@@ -46,6 +40,7 @@ function escolherGola(clicou){
     }
     clicou.classList.add('select')
     gola = clicou.parentNode.querySelector('h6').innerHTML;
+    habilitarBotao()
 }
 
 //TECIDO
@@ -57,20 +52,37 @@ function escolherTecido(clicou){
     }
     clicou.classList.add('select')
     tecido = clicou.parentNode.querySelector('h6').innerHTML;
+    habilitarBotao()
 }
 
 //IMAGEM
 function armazenarImagem(){
     imagem = document.querySelector(".img-ref input").value
+    console.log(imagem)
     imagemEnviar = new URL (imagem)
 }
 
 //Confirmar e enviar pedido
+
+function habilitarBotao(){
+    let produtos = document.querySelectorAll('.select')
+    console.log(produtos)
+    if(produtos.length === 3){
+        let esconder = document.querySelector("div .img-ref > button")
+        esconder.classList.add("esconder")
+
+        let aparecer = document.querySelector(".able")
+        aparecer.classList.remove("esconder")
+    }
+
+}
 function confirmarPedido(){
     armazenarImagem()
-
+    if(imagem === ''){
+        alert("Não esqueça de colocar a URL da imagem de referência")
+    }
     let produtos = document.querySelectorAll('.select')
-    if(produtos.length === 3 && imagem != null && imagem != undefined){
+    if(produtos.length === 3 && imagem != null && imagem != undefined && imagem != ''){
        
         objetoEnviar = {
             model: modelo,
@@ -83,6 +95,8 @@ function confirmarPedido(){
         console.log(objetoEnviar)
         enviarPedido() 
     }
+    
+
     return
 }
 
